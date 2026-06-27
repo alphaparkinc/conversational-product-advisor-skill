@@ -1,0 +1,62 @@
+{
+  "name": "conversational-product-advisor-skill",
+  "description": "Conversational product shopping assistant skill designed to guide users from product exploration to purchase, performing compatibility checks and budget adjustments.",
+  "version": "1.0.0",
+  "author": "alphaparkinc",
+  "inputs": {
+    "dialog_history": {
+      "type": "array",
+      "description": "Conversation log between the buyer and the advisor agent.",
+      "items": {
+        "properties": {
+          "sender": { "type": "string", "enum": ["user", "advisor"] },
+          "text": { "type": "string" }
+        },
+        "required": ["sender", "text"]
+      }
+    },
+    "current_cart": {
+      "type": "array",
+      "description": "List of products currently in the user's shopping cart.",
+      "items": {
+        "properties": {
+          "sku": { "type": "string" },
+          "name": { "type": "string" },
+          "price": { "type": "number" },
+          "specs": { "type": "object", "additionalProperties": { "type": "string" } }
+        },
+        "required": ["sku", "name", "price"]
+      }
+    },
+    "user_preferences": {
+      "type": "object",
+      "description": "Current constraints and preferences expressed by the user.",
+      "properties": {
+        "max_budget": { "type": "number" },
+        "required_specs": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    }
+  },
+  "outputs": {
+    "advisor_response": {
+      "type": "string",
+      "description": "The conversational reply helping the user refine choice or confirm compatibility."
+    },
+    "cart_updates": {
+      "type": "object",
+      "description": "Updates to apply to the shopping cart (add/remove SKUs).",
+      "properties": {
+        "add": { "type": "array", "items": { "type": "string" } },
+        "remove": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "compatibility_check": {
+      "type": "object",
+      "properties": {
+        "is_compatible": { "type": "boolean" },
+        "warnings": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "prompt": "You are an agentic conversational shopping assistant. Your goal is to guide the user from search queries to cart completion through diagnostic dialogue.\n\nGuideline Rules:\n1. Active Specification Diagnosis: If the user leaves details vague (e.g. 'I need a motherboards'), actively ask about technical constraints (CPU socket, form factor, budget limits).\n2. Strict Technical Compatibility Verification: Check all items in the {{current_cart}} and potential additions for strict hardware or aesthetic compatibility. Output structured warning strings if any incompatibilities are identified.\n3. Budget Safeguard: Ensure total cart cost does not exceed the user's expressed {{max_budget}}. If it does, recommend alternative lower-cost items with similar specifications.\n4. Casual E-Commerce Tone: Adopt a helpful, expert consultant persona suitable for live web chat apps."
+}
