@@ -1,4 +1,6 @@
-# Conversational Product Advisor Skill
+# conversational-product-advisor-skill
+
+> **GenPark AI Agent Skill** -- # Conversational Product Advisor Skill
 
 This repository contains the **Conversational Product Advisor Skill** — an agentic shopping assistant interface configuration (`skill.json`), developer SDK client (`product_advisor.py`), and validation script for running conversational product searches and technical compatibility checks.
 
