@@ -1,4 +1,4 @@
-# conversational-product-advisor-skill
+# genpark-conversational-product-advisor-skill
 
 > **GenPark AI Agent Skill** -- # Conversational Product Advisor Skill
 
