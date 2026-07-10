@@ -1,5 +1,5 @@
 {
-  "name": "conversational-product-advisor-skill",
+  "name": "genpark-conversational-product-advisor-skill",
   "description": "GenPark AI Agent Skill - Conversational product shopping assistant skill designed to guide users from product exploration to purchase, performing compatibility checks and budget adjustments.",
   "version": "1.0.0",
   "author": "genpark",
