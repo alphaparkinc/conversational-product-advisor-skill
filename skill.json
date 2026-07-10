@@ -1,18 +1,29 @@
 {
   "name": "conversational-product-advisor-skill",
-  "description": "Conversational product shopping assistant skill designed to guide users from product exploration to purchase, performing compatibility checks and budget adjustments.",
+  "description": "GenPark AI Agent Skill - Conversational product shopping assistant skill designed to guide users from product exploration to purchase, performing compatibility checks and budget adjustments.",
   "version": "1.0.0",
-  "author": "alphaparkinc",
+  "author": "genpark",
   "inputs": {
     "dialog_history": {
       "type": "array",
       "description": "Conversation log between the buyer and the advisor agent.",
       "items": {
         "properties": {
-          "sender": { "type": "string", "enum": ["user", "advisor"] },
-          "text": { "type": "string" }
+          "sender": {
+            "type": "string",
+            "enum": [
+              "user",
+              "advisor"
+            ]
+          },
+          "text": {
+            "type": "string"
+          }
         },
-        "required": ["sender", "text"]
+        "required": [
+          "sender",
+          "text"
+        ]
       }
     },
     "current_cart": {
@@ -20,20 +31,42 @@
       "description": "List of products currently in the user's shopping cart.",
       "items": {
         "properties": {
-          "sku": { "type": "string" },
-          "name": { "type": "string" },
-          "price": { "type": "number" },
-          "specs": { "type": "object", "additionalProperties": { "type": "string" } }
+          "sku": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "specs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
         },
-        "required": ["sku", "name", "price"]
+        "required": [
+          "sku",
+          "name",
+          "price"
+        ]
       }
     },
     "user_preferences": {
       "type": "object",
       "description": "Current constraints and preferences expressed by the user.",
       "properties": {
-        "max_budget": { "type": "number" },
-        "required_specs": { "type": "object", "additionalProperties": { "type": "string" } }
+        "max_budget": {
+          "type": "number"
+        },
+        "required_specs": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
       }
     }
   },
@@ -46,15 +79,32 @@
       "type": "object",
       "description": "Updates to apply to the shopping cart (add/remove SKUs).",
       "properties": {
-        "add": { "type": "array", "items": { "type": "string" } },
-        "remove": { "type": "array", "items": { "type": "string" } }
+        "add": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "remove": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "compatibility_check": {
       "type": "object",
       "properties": {
-        "is_compatible": { "type": "boolean" },
-        "warnings": { "type": "array", "items": { "type": "string" } }
+        "is_compatible": {
+          "type": "boolean"
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   },
